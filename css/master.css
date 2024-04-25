@@ -1,0 +1,190 @@
+:root{
+    --main-color: rgb(29, 78, 216);
+}
+:root {
+    --marquee-width: 100%;
+    --marquee-height: 20vh;
+    /* --marquee-elements: 12; */ /* defined with JavaScript */
+    --marquee-elements-displayed: 5;
+    --marquee-element-width: calc(var(--marquee-width) / var(--marquee-elements-displayed));
+    --marquee-animation-duration: calc(var(--marquee-elements) * 3s);
+  }
+.main-wrapper {
+    width: calc(100% - 50px);
+}
+.main-title, .main-title-left {
+    position: relative;
+    padding: 10px 15px;
+    background: #e9e8e8;
+    line-height: 1.8;
+    color: black;
+}
+.main-title-left {
+    margin: 15px auto !important;
+}
+@media (min-width: 1024px) {
+    .main-title {
+        margin: 10px 0 !important;
+    }
+}
+@media (max-width: 1024px) {
+    .main-title {
+        margin: 15px auto;
+    }
+}
+.main-title::before, .main-title-left::before {
+    content: "";
+    position: absolute;
+    left: -30px;
+    top: 50%;
+    transform: translateY(-50%);
+    border-radius: 50%;
+    width: 0%;
+    height: 0px;
+    background: var(--main-color);
+}
+.main-title::after, .main-title-left::after {
+    content: "";
+    position: absolute;
+    right: -30px;
+    top: 50%;
+    transform: translateY(-50%);
+    border-radius: 50%;
+    width: 0%;
+    height: 0px;
+    background: var(--main-color);
+}
+.main-title:hover.main-title::before, .main-title-left:hover.main-title-left::before  {
+    /* animation-name: move-left;
+    animation-duration: 1s;
+    animation-iteration-count: initial;
+    animation-direction:alternate; */
+    animation: move-left 1s forwards alternate;
+}
+.main-title:hover.main-title::after, .main-title-left:hover.main-title-left::after  {
+    animation: move-right 1s forwards alternate;
+}
+.main-title:hover span, .main-title-left:hover span {
+    transition: all 0.3s;
+    transition-delay: 0.7s;
+    color: white;
+}
+@keyframes move-left {
+    50%{
+        left: 0px;
+        background-color: royalblue;
+    }
+    100%{
+        left: 0;
+        border-radius: 0; 
+        height: 100%;
+        width: 51%;
+        transform: translateY(-50%);
+        background-color: royalblue;
+        color: white;
+        z-index: 0;
+        border: 1px solid #f7f7f7;
+        border-right: none;
+    }
+}
+@keyframes move-right {
+    50%{
+        right: 0;
+        background-color: royalblue;
+    }
+    100%{
+        right: 0;
+        border-radius: 0; 
+        height: 100%;
+        width: 50%;
+        transform: translateY(-50%);
+        background-color: royalblue;
+        color: white;
+        z-index: 0;
+        border: 1px solid #f7f7f7;
+        border-left: none;
+    }
+}
+
+/* Left Side */
+.left-side .rounded-lg {
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+}
+.right-side .wrapper {
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+}
+/* my Avatar */
+.left-side .image-box {
+    border-bottom: 2px solid black;
+}
+
+/* Education */ 
+.education ul li i {
+    line-height: 1.6;
+    position: relative;
+}
+/* Experiance */
+
+
+/* More Skills */
+
+
+.marquee {
+  width: var(--marquee-width);
+  height: var(--marquee-height);
+  background-color: #fff;
+  color: #eee;
+  overflow: hidden;
+  position: relative;
+}
+.marquee:before, .marquee:after {
+  position: absolute;
+  top: 0;
+  width: 10rem;
+  height: 100%;
+  content: "";
+  z-index: 1;
+}
+.marquee:before {
+  left: 0;
+  background: linear-gradient(to right, #f7f7f7 0%, transparent 100%);
+}
+.marquee:after {
+  right: 0;
+  background: linear-gradient(to left, #f7f7f7 0%, transparent 100%);
+}
+.marquee-content {
+  list-style: none;
+  height: 100%;
+  display: flex;
+  animation: scrolling var(--marquee-animation-duration) linear infinite;
+}
+.marquee-content:hover {
+  animation-play-state: paused;
+}
+@keyframes scrolling {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(calc(-1 * var(--marquee-element-width) * var(--marquee-elements))); }
+}
+.marquee-content li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  width: var(--marquee-element-width);
+  max-height: 100%;
+  font-size: calc(var(--marquee-height)*3/4); /* 5rem; */
+  white-space: nowrap;
+}
+.marquee-content li img {
+    max-width: 100%;
+    max-height: 100%;
+}
+@media (max-width: 600px) {
+  html { font-size: 12px; }
+  :root {
+    --marquee-height: 16vh;
+    --marquee-elements-displayed: 3;
+  }
+  .marquee:before, .marquee:after { width: 5rem; }
+}
