@@ -5,40 +5,40 @@ let startedTwo = false;
 
 
 window.onscroll = () => {
-    if (window.scrollY > 50) {
-        if (!startedTwo) {
-            let startIndex = 0;
-            codeSkills.forEach((el) => {
-                let interValid = setInterval(() => {
-                    el.computedStyleMap.width =  `${startIndex++}%`;
-                    if (parseInt(startIndex) >= parseInt(el.dataset.width)) {
-                        clearInterval(interValid);
-                    }
-                }, 4000 / parseInt(el.dataset.width));
-            });
+      if (window.scrollY > 50) {
+            if (!startedTwo) {
+          let startIndex = 0;
+          codeSkills.forEach((el) => {
+            let interValid = setInterval(() => {
+              el.style.width = `${startIndex++}%`;
+              if (parseInt(startIndex) >= parseInt(el.dataset.width)) {
+                clearInterval(interValid);
+              }
+            }, 4000 / parseInt(el.dataset.width));
+          });
         };
         startedTwo = true;
-    }
-    if (window.scrollY > 130) {
-        if (!started) {
-            let startIndex = 0;
-            langSkills.forEach((span) => {
-                let interValid = setInterval(() => {
-                    span.computedStyleMap.width =  `${startIndex++}%`;
-                    if (parseInt(startIndex) >= parseInt(span.dataset.width)) {
-                        clearInterval(interValid);
-                    }
-                }, 4000 / parseInt(span.dataset.width));
-            });
+      }
+      if (window.scrollY > 130) {
+            if (!started) {
+          let startIndex = 0;
+          langSkills.forEach((span) => {
+            let interValid = setInterval(() => {
+              span.style.width = `${startIndex++}%`;
+              if (parseInt(startIndex) >= parseInt(span.dataset.width)) {
+                clearInterval(interValid);
+              }
+            }, 4000 / parseInt(span.dataset.width));
+          });
         };
         started = true;
-    }
+      }
 }
 
 
-//More Skills
+// More Skills
 const root = document.documentElement;
-const marqueenElementDisplayed = getComputedStyle(root).getPropertyValue("--marquee-elements-displayed");
+const marqueeElementsDisplayed = getComputedStyle(root).getPropertyValue("--marquee-elements-displayed");
 const marqueeContent = document.querySelector("ul.marquee-content");
 
 root.style.setProperty("--marquee-elements", marqueeContent.children.length);
